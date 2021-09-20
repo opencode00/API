@@ -1,4 +1,5 @@
 const fs = require('fs');
+//const fs = require('fsPromises');
 const mime = require('mime-types');
 const paths = require('path');
 
@@ -50,17 +51,28 @@ function getMimeTypes(path){
 
 function viewFile(path){
     if (fs.statSync(path).isFile()){
-        // console.log(getMimeTypes(path));
-        if (getMimeTypes(path).split('/')[0] == 'text' || getMimeTypes(path).split('/')[1] == 'pdf'){
-            return fs.readFileSync(path, {encoding: 'UTF8'});
-        }else{
-            return fs.readFileSync(path);
-        }
+        return fs.readFileSync(path);
     }
 }
 
-module.exports = {getFiles};
+function rm(path){
+    if (fs.statSync(path).isFile()){
+        fs.unlink(path, (err) => {
+            if (err) throw err;
+        });
+    }
+}
 
-// console.log(getFiles(absPath));
-// console.log(viewFile(absPath));
-//console.log(getMimeTypes(absPath));
+function rmrf(path){
+    if (fs.statSync(path).isDirectory()){
+        fsPromises.rm(path,{recursive: true, force: true});
+    }
+}
+
+function mv(oPath,dPath){
+    fs.rename(oPath,dPath, (err) => {
+        if (err) throw err;
+    });
+}
+
+module.exports = {getFiles, viewFile, getMimeTypes, rm, mv};
