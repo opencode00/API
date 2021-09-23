@@ -1,13 +1,20 @@
 const router = require('express').Router();
-const { response } = require('express');
 const nDrive = require('./nDrive');
+require('dotenv').config();
 
 // *version modulo (package.json "type":"module")
 // *import {Router} from 'express';
 // *const router = Router();
+function path(query){
+    const base = String(process.env.INIT_DIR);
+
+    if (String(query).includes(base)) return query;
+
+    return base;
+}
 
 router.get('/list',(req, res) => {
-    content = nDrive.getFiles(req.query.path);
+    content = nDrive.getFiles(path(req.query.path));
     return res.json(content);
 });
 

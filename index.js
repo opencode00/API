@@ -1,7 +1,8 @@
 const express = require('express');
-const env = require('dotenv').config();
+const env = require('dotenv');
 const routes = require('./routes.js');
 
+env.config();
 // *version modulo (package.json "type":"module")
 // *import express from 'express';
 // *import config from 'dotenv';
