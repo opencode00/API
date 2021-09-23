@@ -23,13 +23,11 @@ function getFiles(path){
                 if (element.isDirectory()){
                     entry.name = element.name;
                     entry.location = paths.normalize(`${path}/${element.name}`); 
-                    entry.type= "Directory";
                     dirs.push(entry);
                 }
                 if (element.isFile()){
                     entry.name = element.name;
                     entry.location = paths.normalize(`${path}/${element.name}`);
-                    entry.type = getMimeTypes(entry.location) || 'File';
                     files.push(entry);
                 }
             });
@@ -50,29 +48,50 @@ function getMimeTypes(path){
 }
 
 function viewFile(path){
-    if (fs.statSync(path).isFile()){
-        return fs.readFileSync(path);
+    try{
+        if (fs.statSync(path).isFile() && fs.existsSync(path)){
+            return fs.readFileSync(path);
+        }
+    }catch(error){
+        return error;
+
     }
 }
 
 function rm(path){
-    if (fs.statSync(path).isFile()){
+    try{
         fs.unlink(path, (err) => {
             if (err) throw err;
         });
+    }catch(error){
+        throw error;
     }
 }
 
-function rmrf(path){
-    if (fs.statSync(path).isDirectory()){
-        fsPromises.rm(path,{recursive: true, force: true});
-    }
-}
+// function rmrf(path){
+//     if (fs.statSync(path).isDirectory()){
+//         fsPromises.rm(path,{recursive: true, force: true});
+//     }
+// }
 
 function mv(oPath,dPath){
-    fs.rename(oPath,dPath, (err) => {
-        if (err) throw err;
-    });
+    try{
+        fs.rename(oPath,dPath, (err) => {
+            if (err) throw err;
+        });
+    }catch(error){
+        throw error;
+    }
 }
 
-module.exports = {getFiles, viewFile, getMimeTypes, rm, mv};
+function cp(oPath,dPath){
+    try{
+        fs.cp(oPath,dPath, (err) => {
+            if (err) throw err;
+        });
+    }catch(error){
+        throw error;
+    }
+}
+
+module.exports = {getFiles, viewFile, getMimeTypes, rm, mv, cp};

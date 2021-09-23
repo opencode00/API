@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { response } = require('express');
-const nDrive = require('./nDrive/nDrive');
+const nDrive = require('./nDrive');
 
 // *version modulo (package.json "type":"module")
 // *import {Router} from 'express';
@@ -18,16 +18,25 @@ router.get('/viewFile',(req, res) => {
     res.send(content);
 });
 
-router.get('/rmFile',(req, res) => {
+router.get('/rm',(req, res) => {
     file = req.query.path;
     nDrive.rm(file);
     res.send('');
 });
 
-router.get('/mvFile',(req, res) => {
+//?opath=...&dpath=....
+router.get('/mv',(req, res) => {
     src = req.query.opath;
     dest = req.query.dpath;
     nDrive.mv(src, dest);
+    res.send('');
+});
+
+//?opath=...&dpath=....
+router.get('/cp',(req, res) => {
+    src = req.query.opath;
+    dest = req.query.dpath;
+    nDrive.cp(src, dest);
     res.send('');
 });
 
