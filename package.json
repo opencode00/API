@@ -4,6 +4,7 @@
   "description": "API para serebro",
   "main": "index.js",
   "scripts": {
+    "run": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
