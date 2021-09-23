@@ -25,13 +25,21 @@ router.get('/viewFile',(req, res) => {
     res.send(content);
 });
 
+//?path=<directorio actual>&dir=<nombre del directorio>
+router.get('/mkdir',(req, res) => {
+    src = req.query.path;
+    dir = req.query.dir;
+    nDrive.mkdir(`${src}/${dir}`);
+    res.send('');
+});
+
 router.get('/rm',(req, res) => {
     file = req.query.path;
     nDrive.rm(file);
     res.send('');
 });
 
-//?opath=...&dpath=....
+//?opath=<path de origen>&dpath=<path de destino>
 router.get('/mv',(req, res) => {
     src = req.query.opath;
     dest = req.query.dpath;
@@ -39,7 +47,7 @@ router.get('/mv',(req, res) => {
     res.send('');
 });
 
-//?opath=...&dpath=....
+//?opath=<path de origen>&dpath=<path de destino>
 router.get('/cp',(req, res) => {
     src = req.query.opath;
     dest = req.query.dpath;

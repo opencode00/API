@@ -58,6 +58,16 @@ function viewFile(path){
     }
 }
 
+function mkdir(path){
+    try{
+        fs.mkdir(path, (err) => {
+            if (err) throw err;
+        });
+    }catch(error){
+        throw error;
+    }
+}
+
 function rm(path){
     try{
         fs.unlink(path, (err) => {
@@ -94,4 +104,4 @@ function cp(oPath,dPath){
     }
 }
 
-module.exports = {getFiles, viewFile, getMimeTypes, rm, mv, cp};
+module.exports = {getFiles, viewFile, getMimeTypes, mkdir, rm, mv, cp};
