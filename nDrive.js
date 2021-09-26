@@ -2,6 +2,7 @@ const fs = require('fs');
 //const fs = require('fsPromises');
 const mime = require('mime-types');
 const paths = require('path');
+const { response } = require('express');
 
 // Extrae los parametros de la línea de comandos.
 // const args = process.argv.slice(2);
@@ -104,4 +105,10 @@ function cp(oPath,dPath){
     }
 }
 
-module.exports = {getFiles, viewFile, getMimeTypes, mkdir, rm, mv, cp};
+function upload(oPath,file){
+    file.mv(oPath, function(err){
+        if (err) throw err;
+    });
+}
+
+module.exports = {getFiles, viewFile, getMimeTypes, mkdir, rm, mv, cp, upload};

@@ -55,5 +55,13 @@ router.get('/cp',(req, res) => {
     res.send('');
 });
 
+//path=<ruta relativa>&uploadFile=<fichero a subir>
+router.post('/upload',(req, res) => {
+    const file = req.files.uploadFile;
+    const uploadPath = process.env.INIT_DIR + req.body.path + file.name;
+    nDrive.upload(uploadPath,file);
+    res.send('');
+});
+
 
 module.exports = router;
