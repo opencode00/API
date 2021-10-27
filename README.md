@@ -1,10 +1,13 @@
-# JSFileExplorerAPI
-API for file explorer
+# JSAPI
+API para node JS
 
+Esta API realizará diversas funciones como:
+Explorador de archivos, gestor de listas de audio (spotify) y videos (netflix), consultor de pepapig...
 Configurar el puerto y el directorio inicial en .env 
 
 Usar localhost:3000|5000/<action>
 
+## File Explorer
 ### actions:
 #### GET
 - list + (querystring) path=<ruta>
