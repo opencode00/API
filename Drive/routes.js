@@ -1,10 +1,11 @@
+require('dotenv').config();
 const router = require('express').Router();
 const nDrive = require('./nDrive');
-require('dotenv').config();
 
 // *version modulo (package.json "type":"module")
 // *import {Router} from 'express';
 // *const router = Router();
+
 function path(query){
     const base = String(process.env.INIT_DIR);
 
@@ -12,6 +13,9 @@ function path(query){
 
     return base;
 }
+router.get('/', (req, res)=>{
+    res.render('drive')
+});
 
 router.get('/list',(req, res) => {
     content = nDrive.getFiles(path(req.query.path));
