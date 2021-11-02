@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('header') %>
 <body>
     <div id="primitiva"></div>
     <div id="euromillones"></div>
-
-    <script>
-        fetch('http://localhost:5001/pepapig/primitiva')
-        .then(res=>res.json())
-        .then((data)=>{
-            const primi = document.querySelector('#primitiva')
-            primi.innerHTML = data;
-            console.log(data)
-        })
-        fetch('http://localhost:5001/pepapig/euromillones')
-        .then(res=>res.json())
-        .then((data)=>{
-            const euro = document.querySelector('#euromillones')
-            euro.innerHTML = data;
-            console.log(data)
-        })
-
-    </script>
-</body>
-</html>
+    <script src="js/pepapig.js"></script>
+<%- include('footer') %> 

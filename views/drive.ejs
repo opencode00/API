@@ -10,8 +10,9 @@
     <div id="items"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', init());
         const dirs = document.querySelector('#items')
+        document.addEventListener('DOMContentLoaded', init());
+
         function init(){
             fetch('http://localhost:5000/drive/list')
             .then(res=> res.json())
@@ -32,7 +33,7 @@
             .then(res => res.json())
             .then((data)=>{
                 data[0].forEach(element => {
-                    dirs.innerHTML += `<div><a onclick="cd(this)" data-src="<%=src%>" data-loc="${element.location}">${element.name}</a></div>`
+                    dirs.innerHTML += `<div><a onclick="cd(this)" data-src=""" data-loc="${element.location}">${element.name}</a></div>`
                 });
                 data[1].forEach(element => {
                     dirs.innerHTML += `<div>${element.name}</div>`
