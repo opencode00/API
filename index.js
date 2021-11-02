@@ -19,10 +19,10 @@ app.set('views', './views');
 // app.use(express.json()); //Modifica las cabeceras para enviar JSON, pero no interesa por netflix, spoty
 
 app.get('/', (req, res)=>{
-    res.render('landing');
+    res.render('landing', {title: '{(Serebro.v2)}'});
 });
 app.get('/pepapig', (req,res)=>{
-    res.render('pepapig');
+    res.render('pepapig', {title: 'PepaPig Project'});
 });
 
 app.use('/drive', routes);
