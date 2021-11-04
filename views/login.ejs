@@ -1,0 +1,36 @@
+<%- include('header') %> 
+<body style="background: #333 url(img/background.jpg) no-repeat center fixed;">
+    <div style="display:flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="width: 30%; height: 30%; background-color: rgba(3,3,3,0.5);border-radius: 8px;padding: 10px ">
+            <span style="color: whitesmoke">Username</span><br>
+            <input id="username" style="padding: 2px;" type="text"><br>
+            <span style="color: whitesmoke">Password</span><br>
+            <input id="password" style="padding: 2px;" type="password"><br>
+            <button style="padding: 2px;" type="button" onclick="login()">Login</button>
+            <div style="color: red"id="error"></div>
+        </div>
+    </div>
+    <script>
+        function login(){
+            const username=document.querySelector('#username');
+            const password=document.querySelector('#password');
+            if (username.value == '' || password.value == ''){
+                getError();
+                return 
+            }
+            fetch(`http://localhost:5000/login/${username.value}/${password.value}`,{mode: 'no-cors'})
+            .then(res=>res.text())
+            .then(data =>{
+                console.log(data)
+                if(data == 'yes') location.reload();
+                else getError(); 
+            })
+        }
+
+        function getError(){
+            er = document.querySelector('#error')
+            er.innerHTML = "Error de autenticación"
+        }
+    </script>
+</body>
+</html>
