@@ -22,7 +22,7 @@ app.set('views', './views');
 
 app.get('/', (req, res)=>{
     if (req.cookies.auth == 'porquesi')
-        res.send('Cojonudo');
+        res.render('landing', {title: '{(Serebro.v2)}'});
     else
     // res.render('landing', {title: '{(Serebro.v2)}'});
         res.render('login', {title: '{(Serebro.v2)}'});
