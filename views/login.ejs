@@ -18,13 +18,19 @@
                 getError();
                 return 
             }
-            fetch(`http://localhost:5000/login/${username.value}/${password.value}`,{mode: 'no-cors'})
-            .then(res=>res.text())
-            .then(data =>{
-                console.log(data)
-                if(data == 'yes') location.reload();
-                else getError(); 
+            fetch(`http://localhost:5000/login/${username.value}/${password.value}`,{credentials: 'same-origin'})
+            .then(res=> {
+                if (res.status == 200) return res.text();
+                return res.status;
             })
+            .then(data => {
+                if(data != 403){
+                    sessionStorage.setItem('key',data);
+                    window.location.href = "http://localhost:5000/?key="+data;
+                }else{
+                    getError();
+                }
+            });
         }
 
         function getError(){

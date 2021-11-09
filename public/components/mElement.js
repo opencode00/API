@@ -1,43 +1,65 @@
-const tpl = document.createElement('template');
-tpl.innerHTML = `
+/**
+ *  <math-element superior="oc" inferior="drive" color="#ffcb00" [size="3"]>
+ *       <span slot="content">(Dr)</span>
+ *   </math-element>
+ */
+
+const mathtpl = document.createElement('template');
+mathtpl.innerHTML = `
     <style>
+        #general{
+            display: inline-flex;
+        }
         #element{
             font-family: Console;
-            display: flex;
             color: #ffcb00;
-            width: max-content;
             border: **quartersize** solid #ffcb00;
             font-size: **size**; 
-            padding: 1em 0.1em; 
+            padding: 0.7em 0.1em;
+            width: max-content;
+        }
+        #content{
+            width: max-content;
+            float:left;
+        }
+        #powers{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
         }
         #superior{
-            margin-top: 0.1em;
             font-size: **halfsize**;
-            margin-left: 0em;
-            margin-right: 1em;
         }
         #inferior{
-            margin-top: **90size**; 
-            font-size: **halfsize**; 
-            margin-left: -2.1em; 
-            padding-right: 0.1em;
+            display: flex;
+            min-height: **mitadsize**;
+            align-items: end;
+            font-size: **halfsize**;
+            
         }
     </style>
-    <div id="element">
-        (Dr)
-        <sup id="superior"></sup>
-        <sub id="inferior"></sub>
+    <div id="general">
+        <div id="element">
+            <div id="content">
+                <slot name="content"></slot>
+            </div>
+            <div id="powers">
+                <div id="superior"></div>
+                <div id="inferior"></div>
+            </div>
+        </div>
     </div>`;
 
 class mElement extends HTMLElement{
     constructor(){
         super()
-        if (!this.hasAttribute('size')) this.setAttribute('size', 2)
-        tpl.innerHTML = tpl.innerHTML.toString().replaceAll('**size**;', this.getAttribute('size')+'em;')
-        tpl.innerHTML = tpl.innerHTML.toString().replaceAll('**halfsize**;', this.getAttribute('size')/8+'em;')
-        tpl.innerHTML = tpl.innerHTML.toString().replaceAll('**quartersize**', this.getAttribute('size')/24+'em')
-        tpl.innerHTML = tpl.innerHTML.toString().replaceAll('**90size**', ((this.getAttribute('size')/2)*100)/100+'em')
-        const content = tpl.content.cloneNode(true);
+        if (!this.hasAttribute('size')) this.setAttribute('size', 3)
+        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**size**;', this.getAttribute('size')+'em;')
+        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**mitadsize**;', this.getAttribute('size')*11+'px;')
+        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**halfsize**;', this.getAttribute('size')/8+'em;')
+        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**quartersize**', this.getAttribute('size')/18+'em')
+        const content = mathtpl.content.cloneNode(true);
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(content);
         this.update();
@@ -48,7 +70,7 @@ class mElement extends HTMLElement{
     }
 
     static get observedAttributes() {
-        return ['superior','inferior']
+        return ['superior','inferior','color']
     } 
     
     attributeChangedCallback(name, oldVal, newVal){
@@ -56,7 +78,8 @@ class mElement extends HTMLElement{
     }
 
     update(){
-       
+        this.shadowRoot.querySelector('#element').style.color = this.getAttribute('color');
+        this.shadowRoot.querySelector('#element').style.borderColor = this.getAttribute('color');
         this.shadowRoot.querySelector('#superior').innerHTML = this.getAttribute('superior');
         this.shadowRoot.querySelector('#inferior').innerHTML = this.getAttribute('inferior');
     }
