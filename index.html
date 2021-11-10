@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" type="text/css" href="public/css/opApp.css"/> -->
+    <link rel="stylesheet" type="text/css" href="public/css/opApp.css"/> 
     <title>{(Serebro.v2)}</title>
-</head> 
+</head>
+
 <body style="background: #333 url(public/img/background.jpg) no-repeat center fixed;">
-    <math-element superior="oc" inferior="drive" color="#ffcb00" size="3">
-        <span slot="content">(Dr)</span>
-    </math-element>
-    <math-element superior="oc" inferior="drive" color="#ffcb00" size="3">
-        <span slot="content">(Dr)</span>
-    </math-element>
-    <br>
-    <chem-element superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
-        <span slot="content">(Dr)</span>
-    </chem-element>
-    <chem-element superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
-        <span slot="content">(Dr)</span>
-    </chem-element>
-    
-    
-    <script src="public/components/cElement.js"></script>
-    <script src="public/components/mElement.js"></script>
+    <ui-card class="w5 ml2 mt2">
+        <span slot="header">Primitiva</span>
+        <span slot="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
+        </span>
+    </ui-card>
+    <ui-notification color="white" background="red">
+        <span id="mensaje-notificacion" slot="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
+        </span>
+    </ui-notification>
+
+    <script src="public/components/ui_card.js"></script>
+    <script src="public/components/ui_notification.js"></script>
 </body>
+
 </html>

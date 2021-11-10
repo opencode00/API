@@ -1,6 +1,16 @@
 <%- include('header') %> 
-<body style="background: #333 url(img/background.jpg) no-repeat center fixed;">
-    <%- include('topbar') %> 
-    <div id=content></div>
-   </body>
+<body style="background: #333">
+    <div style="min-height: 100vh; width: 80%; margin: 0 auto;"  >
+        <%- include('topbar') %> 
+        <div id=content style="display: flex; justify-content: center;"></div>
+    </div>
+    <%- scripts%>
+    <script>
+        links = document.querySelectorAll('a');
+        for (let i= 0; i < links.length; i++){
+            href = links[i].getAttribute('href');
+            links[i].setAttribute('href', API+href+'?key='+KEY);
+        }
+    </script>
+</body>
 </html>

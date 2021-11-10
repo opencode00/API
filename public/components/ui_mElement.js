@@ -1,7 +1,7 @@
 /**
- *  <math-element superior="oc" inferior="drive" color="#ffcb00" [size="3"]>
+ *  <ui-melement superior="oc" inferior="drive" color="#ffcb00" [size="3"]>
  *       <span slot="content">(Dr)</span>
- *   </math-element>
+ *   </ui-melement>
  */
 
 const mathtpl = document.createElement('template');
@@ -51,7 +51,7 @@ mathtpl.innerHTML = `
         </div>
     </div>`;
 
-class mElement extends HTMLElement{
+class ui_mElement extends HTMLElement{
     constructor(){
         super()
         if (!this.hasAttribute('size')) this.setAttribute('size', 3)
@@ -84,4 +84,4 @@ class mElement extends HTMLElement{
         this.shadowRoot.querySelector('#inferior').innerHTML = this.getAttribute('inferior');
     }
 }
-customElements.define('math-element', mElement);
+customElements.define('ui-mElement', ui_mElement);

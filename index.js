@@ -24,15 +24,15 @@ app.set('views', './views');
 
 app.get('/', (req, res)=>{
     if (req.query.key == pass)
-        res.render('landing', {title: '{(Serebro.v2)}'});
+        res.render('template', {
+            title: '{(Serebro.v2)}',
+            scripts: ''
+        });
     else
-    // res.render('landing', {title: '{(Serebro.v2)}'});
         res.render('login', {title: '{(Serebro.v2)}'});
-    });
+});
 
 app.get('/login/:user/:password', (req, res)=>{
-    // console.log(req.params.user);
-    // console.log(req.params.password);
     res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Credentials', '*');
     if(req.params.user == 'OpenCode' && req.params.password == '1234'){
@@ -46,7 +46,11 @@ app.get('/login/:user/:password', (req, res)=>{
 });
 
 app.get('/pepapig', (req,res)=>{
-    res.render('pepapig', {title: 'PepaPig Project'});
+    if (req.query.key != pass) res.sendStatus(403);
+    res.render('template', {
+        title: 'PepaPig Project', 
+        scripts: '<script src="/components/ui_card.js"></script><script src="/js/pepapig.js"></script>'
+    });
 });
 
 

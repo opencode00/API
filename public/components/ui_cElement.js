@@ -1,7 +1,7 @@
 /**
- *   <chem-element superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
+ *   <ui-celement superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
  *       <span slot="content">(Dr)</span>
- *   </chem-element>
+ *   </ui-celement>
  *   cross: solo cambia el lado del número atómico de arriba
  */
 
@@ -39,7 +39,7 @@ chemtpl.innerHTML = `
         <div class="atomic" id="inferior"></div>
     </div>`;
 
-class cElement extends HTMLElement{
+class ui_cElement extends HTMLElement{
     constructor(){
         super()
         if (!this.hasAttribute('size')) this.setAttribute('size', 3)
@@ -77,4 +77,4 @@ class cElement extends HTMLElement{
         this.shadowRoot.querySelector('#inferior').innerHTML = this.getAttribute('inferior');
     }
 }
-customElements.define('chem-element', cElement);
+customElements.define('ui-celement', ui_cElement);
