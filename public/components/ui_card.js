@@ -1,6 +1,6 @@
 /**
  *  <ui-card [dark]>
-        <span slot="header">Cabecera</span>
+        <span slot="title">Cabecera</span>
         <span slot="content">Contenido</span>
     </ui-card>
  */
@@ -8,52 +8,51 @@
  const cardtpl = document.createElement('template');
  cardtpl.innerHTML = `
      <style>
-     :host{
-         display: inline-block;
-     }
-        #element {
+        :host{
+            display: inline-block;
+        }
+
+        #card {
             width: fit-content;
-            background-color: #fff;
-            border: 1px solid rgba(250,250,250,0.2);
-            border-radius: 8px;
-            box-shadow: rgba(0,0,0,0.4);
+            box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+            max-width: 90vw;
             max-height: 90vh;
-            overflow: auto;
         }
         
-        .card-header{
-            display: flex;
-            padding: 0.7em;
-            background-color: rgba(0,0,0,0.1);
-            border-bottom: 1px solid rgba(0,0,0,0.4);
-            align-items: center;
+        #card-header{
+            background-color: #DDD;
+            color: #212529;
+            padding: 0.9em;
+            border: 1px solid rgba(150,150,150, 0.5);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }	
         
-        .card-body{
-            padding: 10px 20px;
+        #card-body{
+            background-color: #fff;
+            color: #212529;
+            overflow: auto;
+            padding: 0.7em 1em;
+            border: 1px solid rgba(150,150,150, 0.5);
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
 
-        #element.dark{
-            color: #f8f9fa;
-            width: fit-content;
+        .dark #card-header{
             background-color: #212529;
-            border: 1px solid rgba(250,250,250,0.2);
-            border-radius: 8px;
-            box-shadow: rgba(0,0,0,0.4);
-            max-height: 90vh;
-            overflow: auto;
+            color: #f8f9fa;
         }
         
-
-        body.dark .card-header{
-            border-bottom: 1px solid rgba(250,250,250,0.2);
+        .dark #card-body{
+            background-color: #343a40;
+            color: #f8f9fa;
         }
      </style>
-     <div id="element">
-         <div class="card-header">
-            <slot name="header"></slot>
+     <div id="card">
+         <div id="card-header">
+            <slot name="title"></slot>
          </div>
-         <div class="card-body">
+         <div id="card-body">
              <slot name="content"></slot>
          </div>
      </div>`;   
@@ -81,9 +80,9 @@
  
      update(){
         if (this.hasAttribute('dark')){
-            this.shadowRoot.querySelector('#element').classList.add('dark')
+            this.shadowRoot.querySelector('#card').classList.add('dark')
         }else{
-            this.shadowRoot.querySelector('#element').classList.remove('dark');
+            this.shadowRoot.querySelector('#card').classList.remove('dark');
         } 
      }
  }

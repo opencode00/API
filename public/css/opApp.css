@@ -426,57 +426,6 @@ body.dark .btn:hover{
 /* ====================
 	* COMPONENTES *
 ==================== */
-/* card */
-.card {
-	background: #fff;
-	border: var(--default-border);
-	border-radius: 8px;
-	box-shadow: 4px 4px 4px var(--default-shadow);
-	max-height: 90vh;
-	overflow: auto;
-}
-
-.card-header{
-	display: flex;
-	padding: 0.7em;
-	background-color: rgba(0,0,0,0.1);
-	border-bottom: var(--default-border);
-	align-items: center;
-}	
-
-.card-content, .card-body{
-	padding: 10px;
-}
-
-body.dark .card{
-	background-color: var(--dark);
-	color: var(--light);
-	border: var(--dark-border);
-}
-
-body.dark .card-header{
-	border-bottom: var(--dark-border);
-}
-
-
-/*notificaciones */
-.notification{
-	width: calc(98vw - var(--sidebar-width));
-	padding: 15px;
-	border-radius: 5px;
-	border: var(--default-border);
-	box-shadow: 4px 4px 4px var(--default-shadow);
-	z-index:1;
-}
-
-body.dark .notification{
-	border: var(--dark-border);
-}
-
-.containerFull .main .notification{
-	width: 98%;
-}
-
 
 /* Sub Menu vertical */
 .verticalSubMenu{

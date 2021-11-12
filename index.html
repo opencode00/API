@@ -10,20 +10,26 @@
 </head>
 
 <body style="background: #333 url(public/img/background.jpg) no-repeat center fixed;">
-    <ui-card class="w5 ml2 mt2">
-        <span slot="header">Primitiva</span>
+    <ui-card class="w3 ml2 mt2" dark>
+        <span slot="title">Primitiva</span>
         <span slot="content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
         </span>
     </ui-card>
-    <ui-notification color="white" background="red">
+    <ui-notification color="black" background="yellow" locate="bottom">
         <span id="mensaje-notificacion" slot="content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
         </span>
     </ui-notification>
-
+    <ui-modalbox class="w5" dark>
+        <span slot="title" >Titulo</span>
+        <div slot="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, incidunt odit atque ratione dolores laudantium sed molestiae provident vitae voluptas dignissimos, inventore aliquam maiores possimus porro asperiores alias omnis voluptatem.
+        </div>
+    </ui-modalbox>
     <script src="public/components/ui_card.js"></script>
     <script src="public/components/ui_notification.js"></script>
+    <script src="public/components/ui_modalbox.js"></script>
 </body>
 
 </html>
