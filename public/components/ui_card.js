@@ -85,5 +85,9 @@
             this.shadowRoot.querySelector('#card').classList.remove('dark');
         } 
      }
+     
+     setContent(content){
+        this.shadowRoot.querySelector('#card-body').appendChild(content);
+     }
  }
  customElements.define('ui-card', ui_card);
