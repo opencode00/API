@@ -9,13 +9,7 @@ items.forEach((item)=>{
     title.setAttribute('slot', 'title');
     title.innerHTML=item.toString();
 
-    // const body = document.createElement('div');
-    // body.setAttribute('id', `content_${item.toLowerCase()}`)
-    // title.setAttribute('slot', 'content');
-    // title.innerHTML=item.toString();
-
     onecard.appendChild(title)
-    // onecard.appendChild(body)
     divcontent.appendChild(onecard);
 });
 
@@ -24,27 +18,26 @@ const euro = document.querySelector('#euromillones')
 
 let content ='';
 
-fetch(`${API}pepapig/primitiva?key=${KEY}`)
-.then(res=>res.json())
-.then((data)=>{
-    content= '';
-    data.forEach(element => {
-        content += `<div><span style="font-size: bold">${element[0]}</div>`
-        content += `<div>${element[1]}-${element[2]}-${element[3]}-${element[4]}-${element[5]}-${element[6]}::${element[7]}</div>`
-        content += `<div><span style="color: red; font-size: bold">${element[8]}</span></div>`
-    });
-    primi.innerHTML += `<fieldset style="width : 25%; float : left">${content}<legend>Primitiva</legend></fieldset>`;
-})
-
-// fetch(`${API}+'pepapig/euromillones?key=${KEY}`)
+// fetch(`${API}pepapig/primitiva?key=${KEY}`)
 // .then(res=>res.json())
 // .then((data)=>{
-//     content = ''
-//     for (let i = 0; i < data.length-1; i++) {
-//         content += `<div><span style="font-size: bold">${data[i][0]}</div>`
-//         content += `<div>${data[i][1]}-${data[i][2]}-${data[i][3]}-${data[i][4]}-${data[i][5]}::${data[i][6]}-${data[i][7]}</div>`
-//         content += `<div><span style="color: red; font-size: bold">${data[i][8]}</span></div>`
-//     };
-//     content += `<div><span style="color: blue; font-size: bold">${data[data.length-1]}</span></div>`
-//     euro.innerHTML += `<fieldset style="width : 25%; float: left;"><legend>Euromillones</legend>${content}</fieldset>`;
+//     const div = document.createElement('div');
+//     data.forEach((item)=>{
+//         let content = `<div><strong>${item[0]}</strong><br>`;
+//         content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[8]}) </strong></div>`
+//         div.innerHTML += content;
+//     });
+//     primi.setContent(div);
 // })
+
+fetch(`${API}+'pepapig/euromillones?key=${KEY}`)
+.then(res=>res.json())
+.then((data)=>{
+    const div = document.createElement('div');
+    data.forEach((item)=>{
+        let content = `<div><strong>${item[0]}</strong><br>`;
+        content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[8]}) </strong></div>`
+        div.innerHTML += content;
+    });
+    euro.setContent(div);
+})

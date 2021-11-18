@@ -1,8 +1,13 @@
 /**
  *  <ui-card [dark]>
         <span slot="title">Cabecera</span>
-        <span slot="content">Contenido</span>
+        <span slot="content">Contenido Estatico</span>
     </ui-card>
+
+    El metodo setContent(HTMLElement) añade contenido al body de la card dinámicamente
+        p = document.querySelector('ui-card')
+        div = document.createElement('div');
+        p.setContent(div);
  */
 
  const cardtpl = document.createElement('template');
