@@ -30,7 +30,7 @@ let content ='';
 //     primi.setContent(div);
 // })
 
-fetch(`${API}+'pepapig/euromillones?key=${KEY}`)
+fetch(`${API}pepapig/euromillones?key=${KEY}`)
 .then(res=>res.json())
 .then((data)=>{
     const div = document.createElement('div');
