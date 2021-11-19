@@ -15,8 +15,11 @@ function path(query){
     return base;
 }
 drive.get('/', (req, res)=>{
-    res.send('ok');
-    // res.render('drive')
+    res.render('drive', {
+        title: 'Serebro Drive',
+        scripts: ''
+    });
+
 });
 
 drive.get('/list',(req, res) => {

@@ -353,11 +353,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .table tr:nth-child(odd){
-	background-color: rgba(221,221,211,0.8);
+	background-color: rgba(210,210,200,0.8);
 }
 
 body.dark .table tr:nth-child(odd){
 	background-color: rgba(10,10,10,0.8);
+}
+.table.dark tr:nth-child(odd){
+	background-color: rgba(20,20,20,0.8);
 }
 
 /* ====================

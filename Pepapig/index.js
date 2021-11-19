@@ -80,7 +80,6 @@ pepapig.get('/primitiva', (req,res)=>{
 
 pepapig.get('/euromillones', (req,res)=>{
     sheetApi.query(client, '1gdX7muSouFlQzT8Vjwf7_vxttLqEIPJYOiM5tybScjs','EMCombinaciones!B3:J21', (data)=>{
-        console.log(data);
         let allCombs = [];
         const gral = [];
         const jue = [];
@@ -102,7 +101,8 @@ pepapig.get('/euromillones', (req,res)=>{
         magica1.push('Magica 1');
         magica2.push('Magica 2');
         magica3.push('Magica 3');
-
+        stars.push('Estrellas')
+        
         elements = data.data.values;
         elements.forEach((element, index)=>{
             if(index < 7){
@@ -126,7 +126,10 @@ pepapig.get('/euromillones', (req,res)=>{
         magica1.push(elements[15][6]);
         magica2.push(elements[15][7]);
         magica3.push(elements[15][8]);
-
+        stars.push('Top Pairs');
+        stars.push(elements[17][0]);
+        stars.push(elements[17][1]);
+        
         gral.push(elements[16][0]);
         jue.push(elements[16][1]);
         sab.push(elements[16][2]);
@@ -136,6 +139,9 @@ pepapig.get('/euromillones', (req,res)=>{
         magica1.push(elements[16][6]);
         magica2.push(elements[16][7]);
         magica3.push(elements[16][8]);
+        stars.push('Top Gral');
+        stars.push(elements[18][0]);
+        stars.push(elements[18][1]);
         
         allCombs.push(gral);
         allCombs.push(jue);
@@ -146,10 +152,10 @@ pepapig.get('/euromillones', (req,res)=>{
         allCombs.push(magica1);
         allCombs.push(magica2);
         allCombs.push(magica3);
-        allCombs.push(elements[17]);
-        allCombs.push(elements[18]);
-        console.log(allCombs);
-        // res.send(allCombs);
+        allCombs.push(stars);
+        
+        // console.log(allCombs);
+        res.send(allCombs);
     });
 });
 
