@@ -10,33 +10,6 @@
             <div style="color: red;" id="error"></div>
         </div>
     </div>
-    <script>
-        function login(){
-            const username=document.querySelector('#username');
-            const password=document.querySelector('#password');
-            if (username.value == '' || password.value == ''){
-                getError();
-                return 
-            }
-            fetch(`http://localhost:5000/login/${username.value}/${password.value}`,{credentials: 'same-origin'})
-            .then(res=> {
-                if (res.status == 200) return res.text();
-                return res.status;
-            })
-            .then(data => {
-                if(data != 403){
-                    sessionStorage.setItem('key',data);
-                    window.location.href = "http://localhost:5000/?key="+data;
-                }else{
-                    getError();
-                }
-            });
-        }
-
-        function getError(){
-            er = document.querySelector('#error')
-            er.innerHTML = "Error de autenticación"
-        }
-    </script>
+    <script src="/js/login.js"></script>
 </body>
 </html>

@@ -11,6 +11,8 @@ const app = express();
 app.use(fileUpload());
 
 app.use(express.static(__dirname+'/public'));
+app.use(express.urlencoded({ extended: true}));
+
 app.use('/pepapig', pepa);
 app.use('/drive', drive);
 
@@ -26,13 +28,14 @@ app.get('/', (req, res)=>{
     else
         res.render('login', {title: '{(Serebro.v2)}'});
 });
-
-app.get('/login/:user/:password', (req, res)=>{
+ 
+app.post('/login', (req, res)=>{
     res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Credentials', '*');
-    if(req.params.user == 'OpenCode' && req.params.password == '1234'){
+    res.set('Access-Control-Allow-Methods', '*');
+    
+    if(req.body.user == config.params.USER && req.body.pass == config.params.USERPASS){
         console.log('ok');
-        // res.cookie('auth', 'porquesi',{sameSite: 'none', secure: true}).sendStatus(200);
         res.send(config.pass);
     }else{
         console.log('no');
