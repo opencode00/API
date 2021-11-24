@@ -18,7 +18,7 @@
                 getError();
                 return 
             }
-            fetch(`http://localhost:5000/login/${username.value}/${password.value}`,{credentials: 'same-origin'})
+            fetch(`${API}login/${username.value}/${password.value}`,{credentials: 'same-origin'})
             .then(res=> {
                 if (res.status == 200) return res.text();
                 return res.status;
@@ -26,7 +26,7 @@
             .then(data => {
                 if(data != 403){
                     sessionStorage.setItem('key',data);
-                    window.location.href = "http://localhost:5000/?key="+data;
+                    window.location.href = `${API}?key=${data}`;
                 }else{
                     getError();
                 }
