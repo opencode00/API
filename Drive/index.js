@@ -9,7 +9,7 @@ drive.use(function (req, res, next){
 
 function path(query){
     const base = String(config.params.INIT_DIR);
-
+    console.log(base);
     if (String(query).includes(base)) return query;
 
     return base;
