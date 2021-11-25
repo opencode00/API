@@ -1,8 +1,6 @@
 const fs = require('fs');
 const mime = require('mime-types');
 const paths = require('path');
-const { response } = require('express');
-
 
 // Extrae los parametros de la línea de comandos.
 // const args = process.argv.slice(2);

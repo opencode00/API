@@ -28,13 +28,14 @@ function cd(element){
 
 function render(data){
     table.innerHTML = '';
-    let content = `<a onclick="cd(this)" data-loc="${back}"> UP </a>`;
+    let content = `<a onclick="cd(this)" data-loc="${back}" style="cursor: pointer"> ^ UP </a>`;
     table.appendChild(buildRow(content, {colspan: 1}, true))
-    
+    //Directorios
     data[0].forEach(element => {
         content = `<a onclick="cd(this)" data-src="" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
     });
+    //Ficheros
     data[1].forEach(element => {
         content = `<a onclick="cd(this)" data-src="" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
@@ -53,5 +54,6 @@ function buildRow(content, attrs = false, header = false){
     }
     cell.innerHTML = content
     row.appendChild(cell)
+
     return row;
 }

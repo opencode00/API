@@ -466,6 +466,9 @@ body.dark .btn:hover{
 
 /* Tamaño Pequeño - Celulares */
 @media screen and (max-width: 576px) {
+	body{
+		font-size: 11px;
+	}
 	.container {
 		width: 100%;
 		margin: 0px auto;

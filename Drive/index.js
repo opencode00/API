@@ -3,13 +3,13 @@ const drive = require('express').Router();
 const nDrive = require('./nDrive');
 
 drive.use(function (req, res, next){
+   
     if (req.query.key != config.pass) res.sendStatus(403);
     next();
 });
 
 function path(query){
     const base = String(config.params.INIT_DIR);
-    console.log(base);
     if (String(query).includes(base)) return query;
 
     return base;

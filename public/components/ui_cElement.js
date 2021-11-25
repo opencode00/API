@@ -42,8 +42,8 @@ chemtpl.innerHTML = `
 class ui_cElement extends HTMLElement{
     constructor(){
         super()
-        if (!this.hasAttribute('size')) this.setAttribute('size', 3)
         if (!this.hasAttribute('cross')) this.setAttribute('cross', false);
+        if (!this.hasAttribute('size')) this.setAttribute('size', 3)
         chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**size**;', this.getAttribute('size')+'em;')
         chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**supersize**;', this.getAttribute('size')*2+'em;')
         chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**halfsize**;', this.getAttribute('size')/4+'em;')
