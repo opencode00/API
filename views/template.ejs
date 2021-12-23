@@ -1,9 +1,31 @@
-<%- include('header') %> 
-<body style="background: #333">
-    <div style="min-height: 100vh; width: 80%; margin: 0 auto;"  >
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/cssLib/opApp.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/serebro.css"/>
+    <script src="/js/config.js"></script>
+    <title><%=title%></title>
+</head>
+<body>
+    <header>
         <%- include('topbar') %> 
-        <div id=content style="display: flex; justify-content: center;"></div>
+    </header>
+    <div id="content">
+        <section id="left">
+            Menu de la izquierda
+        </section>
+        <section id="center">
+
+        </section>
+        <section id="right">
+            <%- include('right') %> 
+        </section>
     </div>
+</div>
+    <script src="/js/config.js"></script>
     <%- scripts%>
 </body>
 </html>

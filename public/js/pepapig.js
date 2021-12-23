@@ -19,12 +19,13 @@ const euro = document.querySelector('#euromillones')
 let content ='';
 
 fetch(`${API}pepapig/primitiva?key=${KEY}`)
-.then(res=>res.json())
+.then(res=> res.json())
 .then((data)=>{
+    console.log(data);
     const div = document.createElement('div');
     data.forEach((item)=>{
         let content = `<div><strong>${item[0]}</strong><br>`;
-        content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[8]}) </strong></div>`
+        content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[9]}) </strong></div>`
         div.innerHTML += content;
     });
     primi.setContent(div);
@@ -36,11 +37,11 @@ fetch(`${API}pepapig/euromillones?key=${KEY}`)
     const div = document.createElement('div');
     data.forEach((item, index)=>{
         let content = `<div><strong>${item[0]}</strong><br>`;
-        if (index >=9){
+        if (index > 4){
             content += `<strong>${item[1]}: </strong> ${item[2]},${item[3]}<br>`;
             content += `<strong>${item[4]}: </strong> ${item[5]},${item[6]}</div>`
         }else{
-            content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[8]}) </strong></div>`
+            content += `${item[1]},${item[2]},${item[3]},${item[4]},${item[5]},${item[6]} - ${item[7]} <strong>(${item[9]}) </strong></div>`
         }
         div.innerHTML += content;
     });

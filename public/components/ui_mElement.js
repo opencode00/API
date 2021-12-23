@@ -1,7 +1,9 @@
 /**
- *  <ui-melement superior="oc" inferior="drive" color="#ffcb00" [size="3"]>
- *       <span slot="content">(Dr)</span>
- *   </ui-melement>
+    <ui-melement style="font-size: 2em" superior="oc" inferior="drive" color="#ffcb00">
+        <span slot="content">(Dr)</span>
+    </ui-melement>
+
+    font-size no es necesario, solo a efectos de cambiar el tamaño del widget.
  */
 
 const mathtpl = document.createElement('template');
@@ -13,8 +15,7 @@ mathtpl.innerHTML = `
         #element{
             font-family: Console;
             color: #ffcb00;
-            border: **quartersize** solid #ffcb00;
-            font-size: **size**; 
+            border: 0.2em solid #ffcb00;
             padding: 0.7em 0.1em;
             width: max-content;
         }
@@ -29,14 +30,13 @@ mathtpl.innerHTML = `
             
         }
         #superior{
-            font-size: **halfsize**;
+            font-size: 0.5em;
         }
         #inferior{
             display: flex;
-            min-height: **mitadsize**;
+            font-size: 0.5em;
+            min-height: 0.5rem;
             align-items: end;
-            font-size: **halfsize**;
-            
         }
     </style>
     <div id="general">
@@ -54,11 +54,6 @@ mathtpl.innerHTML = `
 class ui_mElement extends HTMLElement{
     constructor(){
         super()
-        if (!this.hasAttribute('size')) this.setAttribute('size', 3)
-        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**size**;', this.getAttribute('size')+'em;')
-        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**mitadsize**;', this.getAttribute('size')*11+'px;')
-        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**halfsize**;', this.getAttribute('size')/8+'em;')
-        mathtpl.innerHTML = mathtpl.innerHTML.toString().replaceAll('**quartersize**', this.getAttribute('size')/18+'em')
         const content = mathtpl.content.cloneNode(true);
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(content);
@@ -84,4 +79,4 @@ class ui_mElement extends HTMLElement{
         this.shadowRoot.querySelector('#inferior').innerHTML = this.getAttribute('inferior');
     }
 }
-customElements.define('ui-mElement', ui_mElement);
+customElements.define('ui-melement', ui_mElement);

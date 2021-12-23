@@ -1,12 +1,22 @@
-<%- include('header') %> 
-<body style="background: #333 url(img/background.jpg) no-repeat center fixed;">
-    <div style="display:flex; justify-content: center; align-items: center; height: 100vh;">
-        <div style="display: flex; flex-direction: column;width: 350px; background-color: rgba(3,3,3,0.5);border-radius: 8px;padding: 20px ">
-            <span style="color: whitesmoke">Username</span>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/cssLib/opApp.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <script src="/js/config.js"></script>
+    <title><%=title%></title>
+</head>
+<body>
+    <div id="loginContent">
+        <div id="loginBox">
+            <span class="whitesmoke">Username</span>
             <input id="username" type="text">
-            <span style="color: whitesmoke; margin-top: 5px">Password</span>
+            <span class="whitesmoke mt1">Password</span>
             <input id="password" type="password">
-            <button style="margin-top: 30px" type="button" onclick="login()">Login</button>
+            <button class="mt10" type="button" onclick="login()">Login</button>
             <div style="color: red;" id="error"></div>
         </div>
     </div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="public/css/opApp.css"/> 
+    <title>{(Serebro.v2)}</title>
+    <style>
+        body{
+            background-image: url('public/img/background.jpg'), radial-gradient(#AAA 1%, #222 99%);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; gap: 5px;;">
+        <ui-melement style="font-size: 2em" superior="oc" inferior="drive" color="#ffcb00">
+            <span slot="content">(Dr)</span>
+        </ui-melement>
+        <ui-celement superior="oc" inferior="drive" color="#ffcb00" cross="false">
+        <span slot="content">(Dr)</span>
+        </ui-celement>
+    </div>
+    <ui-card style="width: 20em; margin-left: 4em; margin-top: 2em" class="" >
+        <span slot="title">Primitiva</span>
+        <span slot="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
+        </span>
+    </ui-card>
+    <ui-notification color="black" background="yellow" locate="bottom">
+        <span id="mensaje-notificacion" slot="content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa qui inventore minima quo sequi doloribus pariatur distinctio dignissimos nobis hic fuga impedit enim rem laboriosam, sunt et maiores dolor cum!
+        </span>
+    </ui-notification>
+    <ui-modalbox style="width: 60em" >
+        <span slot="title" >Titulo</span>
+        <div slot="content">
+            <input type="text">
+        </div>
+    </ui-modalbox>
+   
+    <script src="public/components/ui_mElement.js"></script>
+    <script src="public/components/ui_cElement.js"></script>
+    <script src="public/components/ui_card.js"></script>
+    <script src="public/components/ui_notification.js"></script>
+    <script src="public/components/ui_modalbox.js"></script>
+</body>
+
+</html>

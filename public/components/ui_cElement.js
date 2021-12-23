@@ -1,31 +1,32 @@
 /**
- *   <ui-celement superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
- *       <span slot="content">(Dr)</span>
+ *   <ui-celement superior="oc" inferior="drive" color="#ffcb00" style="font-size:1em" cross="false">
+ *      <span slot="content">(Dr)</span>
  *   </ui-celement>
+ *
+ *   font-size: es para cambiar el tamaño del widget
  *   cross: solo cambia el lado del número atómico de arriba
- */
+ **/
 
 const chemtpl = document.createElement('template');
 chemtpl.innerHTML = `
     <style>
         #element{
-            display: inline-block;
             font-family: Console;
             color: #ffcb00;
-            width: **supersize**;
-            border: **quartersize** solid #ffcb00;
+            width: 6em;
+            border: 0.4em solid #ffcb00;
         }
         #content{
-            font-size: **size**; 
-            margin-bottom: 5px;
+            font-size: 3em; 
+            line-height: 1.1em;
         }
         .atomic{
-            font-size: **halfsize**;
+            font-size: 0.7em;
             margin-right: 2px;
             padding: 2px;
         }
         #superior{
-            /*text-align: right;*/
+            margin-bottom: -5px;
         }
         #inferior{
             text-align: right;
@@ -43,11 +44,6 @@ class ui_cElement extends HTMLElement{
     constructor(){
         super()
         if (!this.hasAttribute('cross')) this.setAttribute('cross', false);
-        if (!this.hasAttribute('size')) this.setAttribute('size', 3)
-        chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**size**;', this.getAttribute('size')+'em;')
-        chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**supersize**;', this.getAttribute('size')*2+'em;')
-        chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**halfsize**;', this.getAttribute('size')/4+'em;')
-        chemtpl.innerHTML = chemtpl.innerHTML.toString().replaceAll('**quartersize**', this.getAttribute('size')/8+'em')
         const content = chemtpl.content.cloneNode(true);
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(content);
