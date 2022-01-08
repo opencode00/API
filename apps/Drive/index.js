@@ -14,17 +14,11 @@ function path(query){
     return base;
 }
 
-
 drive.get('/', (req, res)=>{
     res.render('template', {
         title: 'Serebro Drive',
-        scripts: '<script src="/js/drive.js"></script><script src="/components/ui_explorerItem.js"></script>'
+        scripts: '<script src="/js/drive.js"></script><script src="/components/ui_star.js"></script>',
     });
-
-});
-
-drive.get('/initPath',(req,res)=>{
-    return config.params.INIT_DIR;
 });
 
 drive.get('/list',(req, res) => {

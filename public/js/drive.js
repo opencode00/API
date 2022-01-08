@@ -10,6 +10,7 @@ table.style.width = '90%';
 
 
 function init(){
+    buildLeftMenu();
     fetch(`${API}drive/list?key=${KEY}`)
     .then(res=> res.json())
     .then (data=>{
@@ -50,14 +51,20 @@ function render(data){
 
 function buildRow(content, attrs = false, header = false){
     let row = document.createElement('tr');
-    if (header) row = document.createElement('th');
+    if (header) 
+        row = document.createElement('th');
+    
     let cell = document.createElement('td');
     if (attrs){
         for (let i = 0; i< Object.keys(attrs).length; i++){
             cell.setAttribute(Object.keys(attrs)[i],Object.values(attrs)[i]);
         }
     }
-    cell.innerHTML = content
+    cell.innerHTML = '';
+    if (!header)
+        cell.innerHTML = '<ui-star><ui-star>';
+
+    cell.innerHTML += content;
     row.appendChild(cell)
 
     return row;
@@ -65,4 +72,17 @@ function buildRow(content, attrs = false, header = false){
 
 function view(element){
     window.open(`${API}drive/viewFile?key=${KEY}&path=${element.dataset.loc}`, '_blank')
+}
+
+function buildLeftMenu(){
+    let content = `
+    <ul>
+        <li><a href=${API}drive?key=${KEY}>Mi Unidad</a></li>
+        <li>Compartidos</li>
+        <li>Favoritos</li>
+        <li></li>
+    </ul>
+    `;
+
+    document.getElementById('left').innerHTML = content
 }
