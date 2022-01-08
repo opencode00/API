@@ -1,9 +1,8 @@
-const config = require('./libs/utils')
+const config = require('./libs/utils.js')
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const drive = require('./Drive/index.js');
-const pepa = require('./Pepapig/index.js');
-// const { json } = require('express');
+const drive = require('./apps/Drive/index.js');
+const pepa = require('./apps/Pepapig/index.js');
 
 const port = config.params.PORT || 3000;
 const app = express();

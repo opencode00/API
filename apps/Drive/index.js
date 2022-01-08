@@ -1,10 +1,9 @@
-const config = require('../libs/utils')
+const config = require('../../libs/utils')
 const drive = require('express').Router();
 const nDrive = require('./nDrive');
 
 drive.use(function (req, res, next){
-   
-    if (req.query.key != config.pass) res.sendStatus(403);
+    //if (req.query.key != config.pass) res.sendStatus(403);
     next();
 });
 
@@ -14,12 +13,18 @@ function path(query){
 
     return base;
 }
+
+
 drive.get('/', (req, res)=>{
-    res.render('drive', {
+    res.render('template', {
         title: 'Serebro Drive',
-        scripts: ''
+        scripts: '<script src="/js/drive.js"></script><script src="/components/ui_explorerItem.js"></script>'
     });
 
+});
+
+drive.get('/initPath',(req,res)=>{
+    return config.params.INIT_DIR;
 });
 
 drive.get('/list',(req, res) => {
@@ -30,6 +35,7 @@ drive.get('/list',(req, res) => {
 drive.get('/viewFile',(req, res) => {
     const file = req.query.path;
     const content = nDrive.viewFile(`${file}`);
+    console.log(content);
     res.setHeader('Content-type', nDrive.getMimeTypes(file));
     res.send(content);
 });

@@ -1,6 +1,6 @@
-const config = require('../libs/utils');
+const config = require('../../libs/utils');
 const pepapig = require('express').Router();
-const sheetApi = require("../libs/sheetApi.js");
+const sheetApi = require("../../libs/sheetApi.js");
 const fetch = require('node-fetch');
 const client = sheetApi.getClient();
 

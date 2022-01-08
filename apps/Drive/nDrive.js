@@ -32,6 +32,7 @@ function getFiles(path){
             });
             tree.push(dirs);
             tree.push(files);
+            tree.push(path);
             return tree;
             //return JSON.stringify(tree);
     }

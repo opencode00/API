@@ -1,11 +1,12 @@
 const explorer = document.querySelector('#content')
 document.addEventListener('DOMContentLoaded', init());
 
-let back = '';
+// let back = '';
 const table = document.createElement('table');
 table.classList.add('table');
 table.classList.add('dark');
 table.style.color = '#CDD';
+table.style.width = '90%';
 
 
 function init(){
@@ -17,8 +18,6 @@ function init(){
 }
 
 function cd(element){
-    back = element.dataset.loc.toString().replace(element.innerHTML,'');
-    //console.log(`${element.innerHTML} : ${back}`)
     fetch(`${API}drive/list?key=${KEY}&path=${element.dataset.loc}`)
     .then(res => res.json())
     .then((data)=>{
@@ -26,18 +25,24 @@ function cd(element){
     })
 }
 
+function back(path){
+    return path.substring(0,path.lastIndexOf(DIR_SEP))
+}
+
 function render(data){
     table.innerHTML = '';
-    let content = `<a onclick="cd(this)" data-loc="${back}" style="cursor: pointer"> ^ UP </a>`;
+    let content = `<a onclick="cd(this)" data-loc="${back(data[2])}" style="cursor: pointer"> ^ UP </a> - ${data[2]}`;
+    
+    //Table Headers
     table.appendChild(buildRow(content, {colspan: 1}, true))
     //Directorios
     data[0].forEach(element => {
-        content = `<a onclick="cd(this)" data-src="" data-loc="${element.location}">${element.name}</a>`
+        content = `<a onclick="cd(this)" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
     });
     //Ficheros
     data[1].forEach(element => {
-        content = `<a onclick="cd(this)" data-src="" data-loc="${element.location}">${element.name}</a>`
+        content = `<a onclick="view(this)" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
     });
     explorer.appendChild(table);
@@ -56,4 +61,8 @@ function buildRow(content, attrs = false, header = false){
     row.appendChild(cell)
 
     return row;
+}
+
+function view(element){
+    window.open(`${API}drive/viewFile?key=${KEY}&path=${element.dataset.loc}`, '_blank')
 }

@@ -18,18 +18,20 @@ nav {
     height: 5em;
 }
 
-#content{
+#container{
     display: flex;
 }  
 
 #left{
-    flex-grow: 1;
-    flex-basis: 1em;
+    max-width: 240px;
+    min-width: 240px;
+    /* flex-grow: 1;
+    flex-basis: 1em; */
 }
 
-#center{
+#content{
     flex-grow: 2;
-    flex-basis:40em;
+    flex-basis:70em;
 }
 
 
