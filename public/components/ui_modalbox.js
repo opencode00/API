@@ -21,7 +21,7 @@
         }
         
         #modalbox {
-            width: fit-content;
+            /*width: fit-content;*/
             height: fit-content;
             box-shadow: rgba(0,0,0,0.4);
             max-height: 80vh;
@@ -60,8 +60,8 @@
 
         #close_modalbox_button{
             position: absolute;
-            right: 5px;
-            top: 5px;
+            right: 1em;
+            top: 1em;
             cursor: pointer;
         }
     </style>
