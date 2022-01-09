@@ -1,5 +1,7 @@
 #todo
  - zona upload
+ - herramientas copiar, pegar, eliminar
+ - interfaz dispositivos (menu left)
  - conexion con el gestor de listas (favs y shares).
 
 # Serebro 

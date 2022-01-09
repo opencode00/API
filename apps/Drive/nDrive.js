@@ -111,7 +111,6 @@ function upload(oPath,file){
     });
 }
 
-
 function humanSize(size){
     sz = 'BKMGTP';
     lg = size.toString().length;
@@ -119,5 +118,6 @@ function humanSize(size){
     // console.log((size/(1024**factor)).toFixed(2).toString() + sz[factor])
     return (size/(1024**factor)).toFixed(2).toString() + sz[factor]
 }
+
 
 module.exports = {getFiles, viewFile, getMimeTypes, mkdir, rm, mv, cp, upload};
