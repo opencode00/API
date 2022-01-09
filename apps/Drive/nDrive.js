@@ -27,6 +27,7 @@ function getFiles(path){
                 if (element.isFile()){
                     entry.name = element.name;
                     entry.location = paths.normalize(`${path}/${element.name}`);
+                    entry.size = humanSize(fs.statSync(`${path}/${element.name}`).size);
                     files.push(entry);
                 }
             });
@@ -108,6 +109,15 @@ function upload(oPath,file){
     file.mv(oPath, function(err){
         if (err) throw err;
     });
+}
+
+
+function humanSize(size){
+    sz = 'BKMGTP';
+    lg = size.toString().length;
+    factor = Math.floor((lg-1)/3)
+    // console.log((size/(1024**factor)).toFixed(2).toString() + sz[factor])
+    return (size/(1024**factor)).toFixed(2).toString() + sz[factor]
 }
 
 module.exports = {getFiles, viewFile, getMimeTypes, mkdir, rm, mv, cp, upload};

@@ -38,12 +38,15 @@ function render(data){
     table.appendChild(buildRow(content, {colspan: 1}, true))
     //Directorios
     data[0].forEach(element => {
-        content = `<a onclick="cd(this)" data-loc="${element.location}">${element.name}</a>`
+        content = `<a class="dirs" onclick="cd(this)" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
     });
     //Ficheros
     data[1].forEach(element => {
-        content = `<a onclick="view(this)" data-loc="${element.location}">${element.name}</a>`
+        content = `
+            <span class="icon" id="share_${element.name}" onclick="add2share(share_${element.name})" >&#x273B;</span>
+            <ui-star class="icon" id="star_${element.name}" onclick="add2Fav('star_${element.name}')"></ui-star> 
+            <a class="files" onclick="view(this)" data-loc="${element.location}">${element.name}</a> &nbsp;&nbsp;&nbsp;&nbsp; ${element.size}`
         table.appendChild(buildRow(content));
     });
     explorer.appendChild(table);
@@ -60,11 +63,7 @@ function buildRow(content, attrs = false, header = false){
             cell.setAttribute(Object.keys(attrs)[i],Object.values(attrs)[i]);
         }
     }
-    cell.innerHTML = '';
-    if (!header)
-        cell.innerHTML = '<ui-star><ui-star>';
-
-    cell.innerHTML += content;
+    cell.innerHTML = content;
     row.appendChild(cell)
 
     return row;
@@ -85,4 +84,9 @@ function buildLeftMenu(){
     `;
 
     document.getElementById('left').innerHTML = content
+}
+
+function add2Fav(id){
+    element = document.getElementById(id);
+    element.toggleAttribute('selected');
 }
