@@ -1,8 +1,9 @@
 #todo
- - zona upload
- - herramientas copiar, pegar, eliminar
- - interfaz dispositivos (menu left)
- - conexion con el gestor de listas (favs y shares).
+ - herramientas copiar, pegar, [eliminar]
+    - Implemtar cp para copiar listas de ficheros
+    
+ - Mejorar menus de la interfaz
+ - conexion con el gestor de listas Python(favs y shares).
 
 # Serebro 
 Serebro es un centro de unificacion de diversas aplicaciones realizado con NodeJS. Tiene integrado un file explorer basado en un API.
@@ -22,8 +23,8 @@ El directorio public contiene además herramientas de uso rutinario para CSS y J
 - viewFile + (querystring) path=<ruta fichero a visualizar>
 - mkdir + (querystring) path=<ruta actual> + (querystring) dir=<nombre directorio> 
 - rm + (querystring) path=<ruta fichero a eliminar>
-- mv + (querystring) opath=<ruta origen > + (querystring) dpath=<ruta destino>
-- cp + (querystring) opath=<ruta origen > + (querystring) dpath=<ruta destino>
+- mv + (querystring) opath=<ruta origen > + (querystring) dpath=<ruta destino>~
+- cp + (querystring) opath=lista ficheros + (querystring) dpath=<directorio destino>
 
 ### POST:
  - upload (post) path=<path actual>&uploadFile=<fichero a subir>

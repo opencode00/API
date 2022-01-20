@@ -34,10 +34,8 @@ app.post('/login', (req, res)=>{
     res.set('Access-Control-Allow-Methods', '*');
     
     if(req.body.user == config.params.USER && req.body.pass == config.params.USERPASS){
-        console.log('ok');
         res.send(config.pass);
     }else{
-        console.log('no');
         res.sendStatus(403);
     }
 });

@@ -17,7 +17,10 @@ function path(query){
 drive.get('/', (req, res)=>{
     res.render('template', {
         title: 'Serebro Drive',
-        scripts: '<script src="/js/drive.js"></script><script src="/components/ui_star.js"></script>',
+        scripts: 
+            `<script src="/js/drive.js"></script>
+            <script src="/components/ui_star.js"></script>
+            `,
     });
 });
 
@@ -42,11 +45,11 @@ drive.get('/mkdir',(req, res) => {
     res.send('');
 });
 
-drive.get('/rm',(req, res) => {
-    file = req.query.path;
-    nDrive.rm(file);
-    res.send('');
-});
+// drive.get('/rm',(req, res) => {
+//     file = req.query.path;
+//     nDrive.rm(file);
+//     res.send('');
+// });
 
 //?opath=<path de origen>&dpath=<path de destino>
 drive.get('/mv',(req, res) => {
@@ -66,10 +69,19 @@ drive.get('/cp',(req, res) => {
 
 //path=<ruta relativa>&uploadFile=<fichero a subir>
 drive.post('/upload',(req, res) => {
-    const file = req.files.uploadFile;
-    const uploadPath = process.env.INIT_DIR + req.body.path + file.name;
-    nDrive.upload(uploadPath,file);
-    res.send('');
+    // res.set('Access-Control-Allow-Origin', '*');
+    // res.set('Access-Control-Allow-Credentials', '*');
+    // res.set('Access-Control-Allow-Methods', '*');
+
+    // console.log(req.body.path)
+    //console.log(req.files.uploadFile)
+    const uploadPath = req.body.path;
+
+    for (const file in req.files.uploadFile){
+        //console.log(`${uploadPath}\\${req.files.uploadFile[file].name}`)
+        nDrive.upload(uploadPath,req.files.uploadFile[file]);
+    }
+    res.send('Uploaded!');
 });
 
 

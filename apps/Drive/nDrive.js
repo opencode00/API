@@ -95,9 +95,10 @@ function mv(oPath,dPath){
     }
 }
 
+//opath = file, dpath= directory
 function cp(oPath,dPath){
     try{
-        fs.cp(oPath,dPath, (err) => {
+        fs.copyFile(oPath,dPath, (err) => {
             if (err) throw err;
         });
     }catch(error){
@@ -106,7 +107,7 @@ function cp(oPath,dPath){
 }
 
 function upload(oPath,file){
-    file.mv(oPath, function(err){
+    file.mv(`${oPath}\\${file.name}`, function(err){
         if (err) throw err;
     });
 }
