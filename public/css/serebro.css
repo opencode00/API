@@ -1,6 +1,7 @@
 body{
-    background-image: radial-gradient(#AAA 1%, #222 99%);
-    background-repeat: no-repeat;
+    /* background-image: linear-gradient(#AAA 1%, #222 99%);
+    background-repeat: repeat-y; */
+    background-color: #333;
     background-position: center;
     height: 100vh;
     font-size: 18px;
@@ -24,8 +25,8 @@ nav {
 }  
 
 #left{
-    max-width: 240px;
-    min-width: 240px;
+    max-width: 200px;
+    min-width: 200px;
     /* flex-grow: 1;
     flex-basis: 1em; */
 }
@@ -58,6 +59,17 @@ nav {
     height: 100vh;
     z-index: 2;
     display: none;
+}
+
+#multiTool{
+    position: fixed; 
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #555;
+    border-radius: 5px;
+    padding: 6px;
+    text-align: center;
 }
 @media screen and (max-width: 576px) {
 	body{

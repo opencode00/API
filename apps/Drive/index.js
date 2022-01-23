@@ -3,7 +3,7 @@ const drive = require('express').Router();
 const nDrive = require('./nDrive');
 
 drive.use(function (req, res, next){
-    //if (req.query.key != config.pass) res.sendStatus(403);
+    if (req.query.key != config.pass) res.sendStatus(403);
     next();
 });
 

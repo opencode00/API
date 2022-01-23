@@ -1,7 +1,6 @@
 const explorer = document.querySelector('#content')
 document.addEventListener('DOMContentLoaded', init());
 
-
 // let back = '';
 const table = document.createElement('table');
 table.classList.add('table');
@@ -17,6 +16,13 @@ function init(){
     overlay = document.createElement('div');
     overlay.setAttribute('id','overlay');
     document.querySelector('body').appendChild(overlay);
+    
+    multitool = document.createElement('div');
+    multitool.setAttribute('id', 'multiTool');
+    multitool.setAttribute('class', 'disabled');
+    document.querySelector('body').appendChild(multitool);
+    document.getElementById('multiTool').innerHTML = '<input class="w12" type="text" id="multiText"/> <button id="multiButton"></button>';
+    
     buildLeftMenu();
     fetch(`${API}drive/list?key=${KEY}`)
     .then(res=> res.json())
@@ -47,7 +53,6 @@ function render(data){
         <a class="icon tools" id="pasteTool" onclick="paste()"> &#x2117; </a> 
         <a class="icon tools" onclick="share()"> &#9901; </a> 
         <a class="icon tools" onclick="newDir()">&#10010; </a> 
-        <div id="multiTool" class="disabled"><input type="text" id="multiText"/> <button id="multiButton"></button></div>
         `;
         
     table.appendChild(buildRow(content, {colspan: 1}, true))
@@ -142,6 +147,7 @@ function newDir(){
     xTool.classList.toggle('disabled');
     cPath = document.getElementById('currentPath');
     xText = document.getElementById('multiText');
+    xText.value = '';
     xButton = document.getElementById('multiButton');
     xButton.innerHTML="New Dir";
     xButton.addEventListener('click',()=>{
@@ -206,6 +212,9 @@ function drop(event){
     document.querySelector('#overlay').style.display="none";
 }
 
+function mkMultiTool(){
+    return
+}
 dropzone.addEventListener('dragover', dragover);
 dropzone.addEventListener('dragleave', dragleave);
 dropzone.addEventListener('drop', drop);

@@ -4,8 +4,32 @@
             <img src="/img/background.jpg"/>
         <!-- </a> -->
     </div>
+    <div style="display: flex; font-size: 0.9em;">
+        <a class="topbar_links_app no_decoration" href="drive">
+            <ui-celement superior="oc" inferior="drive" color="#ffcb00" size="3" cross="false">
+                <span slot="content">(Dr)</span>
+            </ui-celement>
+        </a>
+        <a class="topbar_links_app no_decoration" href="flow">
+            <ui-celement superior="oc" inferior="flow" color="red" size="3" cross="false">
+                <span slot="content">(⚡)</span>
+            </ui-celement>
+        </a>
+        <a class="topbar_links_app no_decoration" href="pepapig">
+            <ui-celement superior="oc" inferior="€++" color="#930093" size="3" cross="false">
+                <span slot="content">(🐽)</span>
+            </ui-celement>
+        </a>
+        <script src="/components/ui_cElement.js"></script>
+        <script>
+            links = document.querySelectorAll('.topbar_links_app');
+            for (let i= 0; i < links.length; i++){
+                href = links[i].getAttribute('href');
+                links[i].setAttribute('href', API+href+'?key='+KEY);
+            }
+        </script>
+    </div>
     <div>
-        Contenido adicional
-        <span style="font-size: 4em">☰</span> 
+        <!-- <span style="font-size: 4em">☰</span>  -->
     </div>
 </nav>
