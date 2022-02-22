@@ -18,9 +18,11 @@ drive.get('/', (req, res)=>{
     res.render('template', {
         title: 'Serebro Drive',
         scripts: 
-            `<script src="/js/drive.js"></script>
-            <script src="/components/ui_star.js"></script>
-            `,
+        `
+        <script src="/apps/drive/renderer.js"></script>
+        <script src="/apps/drive/utils.js"></script>
+        <script src="/apps/drive/drive.js"></script>
+        `,
     });
 });
 
@@ -69,17 +71,14 @@ drive.get('/cp',(req, res) => {
 
 //path=<ruta relativa>&uploadFile=<fichero a subir>
 drive.post('/upload',(req, res) => {
-    // res.set('Access-Control-Allow-Origin', '*');
-    // res.set('Access-Control-Allow-Credentials', '*');
-    // res.set('Access-Control-Allow-Methods', '*');
-
-    // console.log(req.body.path)
-    //console.log(req.files.uploadFile)
     const uploadPath = req.body.path;
-
-    for (const file in req.files.uploadFile){
-        //console.log(`${uploadPath}\\${req.files.uploadFile[file].name}`)
-        nDrive.upload(uploadPath,req.files.uploadFile[file]);
+    if (req.files.uploadFile.length == undefined){
+        nDrive.upload(uploadPath,req.files.uploadFile);
+    }else{
+        for (const file in req.files.uploadFile){
+            // console.log(req.files.uploadFile[file])
+            nDrive.upload(uploadPath,req.files.uploadFile[file]);
+        }
     }
     res.send('Uploaded!');
 });

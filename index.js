@@ -2,7 +2,7 @@ const config = require('./libs/utils.js')
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const drive = require('./apps/Drive/index.js');
-const pepa = require('./apps/Pepapig/index.js');
+// const pepa = require('./apps/Pepapig/index.js');
 
 const port = config.params.PORT || 3000;
 const app = express();
@@ -12,7 +12,7 @@ app.use(fileUpload());
 app.use(express.static(__dirname+'/public'));
 app.use(express.urlencoded({ extended: true}));
 
-app.use('/pepapig', pepa);
+// app.use('/pepapig', pepa);
 app.use('/drive', drive);
 
 app.set('view engine', 'ejs');
