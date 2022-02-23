@@ -113,6 +113,6 @@ function drop(event){
 }
 
 function add2Fav(id){
-    element = document.getElementById(id);
-    element.toggleAttribute('selected');
+    fetch(`${APY}`)
+    
 }

@@ -6,7 +6,8 @@
  - conexion con el gestor de listas Python(favs y shares).
 
 # Serebro 
-Serebro es un centro de unificacion de diversas aplicaciones realizado con NodeJS. Tiene integrado un file explorer basado en un API.
+Serebro es un centro de unificacion de diversas aplicaciones realizado con NodeJS. Tiene integrado un file explorer [basado en un API].
+Esta basado en express para que no figure la mayor parte del código en el cliente.
 
 El API del file explorer se encuentra en apps/Drive donde esta el API propiamente dicha y wrapper para express 
 
@@ -15,7 +16,7 @@ Las aplicaciones tiene en comun un plantilla de renderizado (views/template.ejs)
 El directorio public contiene además herramientas de uso rutinario para CSS y JS como:
 - componentes
 - librería de atajos CSS (cssLib)
-- utilidades JS (jsLib)
+
 
 ## Funciones del API File Explorer integrada
 ### GET
