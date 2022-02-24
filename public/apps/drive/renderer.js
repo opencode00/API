@@ -41,14 +41,35 @@ function buildRow(content, attrs = false, header = false){
 function buildLeftMenu(){
     let content = `
     <div><a onclick="data('${API}drive/list?key=${KEY}', drive)">Mi Unidad</a></div>
-    <div><a onclick="data('https://jsonplaceholder.typicode.com/todos/1', shared)">Compartidos</a></div>
-    <div><a onclick="data('https://jsonplaceholder.typicode.com/todos/1', favs)">Destacados</a></div>
+    <div><a onclick="data('${API}drive/list?key=${KEY}', shared)">Compartidos</a></div>
+    <div><a onclick="data('${API}drive/list?key=${KEY}', favs)">Destacados</a></div>
     `;
-    // let content = `
-    // <div><a href=${API}drive?key=${KEY}>Mi Unidad</a></div>
-    // <div><a href=${API}drive?key=${KEY}&app=shared>Compartidos</a></div>
-    // <div><a href=${API}drive?key=${KEY}&app=favs>Destacados</a></div>
-    // `;
 
     document.getElementById('left').innerHTML = content
+}
+
+function giveFavs(el){
+    ul = document.createElement('ul')
+    content = ''
+    fetch(`${APY}listman/get/Favoritos?key=${KEYPY}`)
+    .then(res => res.json())
+    .then(data => {
+        data.forEach((ref => {
+            content += `<li>
+                        <a onclick="remove(this)" data-loc="${ref[0]}" class="icon ">X</a>
+                        <a onclick="view(this)" data-loc=${ref[6]}>${ref[1]}</a>
+                        </li>` 
+        }))
+        ul.innerHTML = content
+        el.appendChild(ul)
+    })
+}
+
+function remove(el){
+    id = el.dataset.loc
+    li = el.parentNode
+    ul = li.parentNode
+    ul.removeChild(li)
+
+    fetch(`${APY}listman/remove/${id}?key=${KEYPY}`)
 }
