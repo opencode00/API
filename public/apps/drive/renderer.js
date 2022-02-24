@@ -14,8 +14,8 @@ function chassis(){
 
 function rowContent(element){
     row = `<input class="selectorItems" type="checkbox" id="sel_${element.name}"/>
-    <a id="fav_${element.name}" class="icon tools" onclick="add2Fav('star_${element.name}')" title="Favorito">F|</a> 
-    <a id="share_${element.name}" class="icon tools" onclick="add2share('share_${element.name}')" title="Share">S|</a> 
+    <a id="fav_${element.name}" class="icon tools" onclick="add2Fav(this)" title="Favorito" data-loc="${element.location}" data-name="${element.name}">F|</a> 
+    <a id="share_${element.name}" class="icon tools" onclick="add2share(this)" title="Share" data-loc="${element.location}" data-name="${element.name}">S|</a> 
     <a class="icon tools" onclick="rename(this)">R</a> 
     <a class="files" onclick="view(this)" data-loc="${element.location}">${element.name}</a> &nbsp;&nbsp;&nbsp;&nbsp; ${element.size}`
     return row;

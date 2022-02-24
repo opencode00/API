@@ -74,4 +74,5 @@ function favs(data){
     let content = `Favoritos`;
     table.appendChild(buildRow(content, {colspan: 1}, true))
     explorer.appendChild(table);
+    giveFavs(explorer);
 }

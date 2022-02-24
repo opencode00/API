@@ -5,7 +5,6 @@ function enter(ev){
     if (ev.keyCode == 13) login();
 }
 
-
 function login(){
     const username=document.querySelector('#username');
     const password=document.querySelector('#password');
@@ -27,6 +26,22 @@ function login(){
         if(data != 403){
             sessionStorage.setItem('key',data);
             window.location.href = `${API}?key=${data}`;
+        }else
+            getError();
+    });
+
+    fetch(`${APY}givemepower`,{
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `user=${username.value}&pass=${password.value}`,
+    })
+    .then(res=> {
+        if (res.status == 200) return res.text();
+        return res.status;
+    })
+    .then(data => {
+        if(data != 403){
+            sessionStorage.setItem('keypy',data);
         }else
             getError();
     });

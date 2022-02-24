@@ -112,7 +112,27 @@ function drop(event){
     document.querySelector('#overlay').style.display="none";
 }
 
-function add2Fav(id){
-    fetch(`${APY}`)
-    
+function add2Fav(el){
+    form = new FormData();
+    form.append('type', 'Favoritos');
+    form.append('name', el.dataset.name);
+    form.append('value', el .dataset.loc);
+    fetch(`${APY}/listman/add?key=${KEYPY}`, { 
+        method: "POST",
+        body: form
+    });
+}
+
+function giveFavs(el){
+    ul = document.createElement('ul')
+    content = ''
+    fetch(`${APY}listman/get/Favoritos?key=${KEYPY}`)
+    .then(res => res.json())
+    .then(data => {
+        data.forEach((ref => {
+            content += `<li><a onclick="view(this)" data-loc=${ref[6]}>${ref[1]}</a></li>` 
+        }))
+        ul.innerHTML = content
+        el.appendChild(ul)
+    })
 }

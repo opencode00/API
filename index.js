@@ -46,8 +46,8 @@ app.post('/login', (req, res)=>{
 });
 
 function writeConfig(){
-    config_ = {};
     content = "const KEY = sessionStorage.getItem('key');\n"
+    content += "const KEYPY = sessionStorage.getItem('keypy');\n"
     content += `const DIR_SEP = '${config.params.DIR_SEP}';\n`
     content += `const API = '${config.params.API}'\n`;
     content += `const APY = '${config.params.APY}'\n`;
