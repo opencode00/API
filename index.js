@@ -2,6 +2,8 @@ const config = require('./libs/utils.js')
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const drive = require('./apps/Drive/index.js');
+const fs = require('fs')
+// const { reset } = require('nodemon');
 // const pepa = require('./apps/Pepapig/index.js');
 
 const port = config.params.PORT || 3000;
@@ -19,12 +21,15 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.get('/', (req, res)=>{
-    if (req.query.key == config.pass)
+    fs.writeFile('public/js/config.js', writeConfig() ,(err) => {
+        if (err) throw err;
+    });
+    if (req.query.key == config.pass){
         res.render('template', {
             title: '{(Serebro.v2)}',
             scripts: ''
         });
-    else
+    }else
         res.render('login', {title: '{(Serebro.v2)}'});
 });
  
@@ -39,6 +44,15 @@ app.post('/login', (req, res)=>{
         res.sendStatus(403);
     }
 });
+
+function writeConfig(){
+    config_ = {};
+    content = "const KEY = sessionStorage.getItem('key');\n"
+    content += `const DIR_SEP = '${config.params.DIR_SEP}';\n`
+    content += `const API = '${config.params.API}'\n`;
+    content += `const APY = '${config.params.APY}'\n`;
+    return content
+}
 
 app.listen(port, ()=>{
     console.log(`Servidor escuchando en el puerto ${port}`);
