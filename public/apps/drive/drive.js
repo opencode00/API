@@ -5,17 +5,17 @@ const dropzone = document.querySelector('body');
 
 function init(){
     buildLeftMenu();
-    data(`${API}drive/list?key=${KEY}`, drive);
+    data(`${APY}/drive/list?key=${KEY}`, drive);
 }
 
 function data(url, callback){
     fetch(url)
     .then(res=> res.json())
     .then (data=>{
+        console.log(data);
         callback(data);
     })
 }
-
 
 function drive(data){
     const table = chassis();
@@ -31,8 +31,8 @@ function drive(data){
 
     //Header
     let content = `
-        <a onclick="cd(this)" data-loc="${back(data[2])}" style="cursor: pointer"> ^ UP </a> - ${data[2]}
-        <input type="hidden" value="${data[2]}" id="currentPath" data-loc="${data[2]}"/> | 
+        <a onclick="cd(this)" data-loc="${back(data[0])}" style="cursor: pointer"> ^ UP </a> - ${data[0]}
+        <input type="hidden" value="${data[0]}" id="currentPath" data-loc="${data[0]}"/> | 
         <a class="icon tools" onclick="copy()"> &#xa9; </a>
         <a class="icon tools" id="pasteTool" onclick="paste()"> &#x2117; </a> 
         <a class="icon tools" onclick="newDir()">&#10010; </a> 
@@ -41,13 +41,13 @@ function drive(data){
     table.appendChild(buildRow(content, {colspan: 1}, true))
 
     //Directorios
-    data[0].forEach(element => {
+    data[1].forEach(element => {
         content = `<a class="dirs" onclick="cd(this)" data-loc="${element.location}">${element.name}</a>`
         table.appendChild(buildRow(content));
     });
     
     //Ficheros
-    data[1].forEach(element => {
+    data[2].forEach(element => {
         content = rowContent(element);
         table.appendChild(buildRow(content));
     });

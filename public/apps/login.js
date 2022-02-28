@@ -13,37 +13,28 @@ function login(){
         return 
     }
     
-    fetch(`${API}login`,{
+    console.log(`${APY}/login`)
+    fetch(`${APY}/login`,{
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        headers: { 
+            "Content-Type": "application/x-www-form-urlencoded", 
+        },
         body: `user=${username.value}&pass=${password.value}`,
     })
     .then(res=> {
-        if (res.status == 200) return res.text();
-        return res.status;
-    })
-    .then(data => {
-        if(data != 403){
-            sessionStorage.setItem('key',data);
-            window.location.href = `${API}?key=${data}`;
+        console.log(res)
+        if(res.status == 200){
+            return res.text()
         }else
             getError();
-    });
-
-    fetch(`${APY}givemepower`,{
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `user=${username.value}&pass=${password.value}`,
+            return null
     })
-    .then(res=> {
-        if (res.status == 200) return res.text();
-        return res.status;
-    })
-    .then(data => {
-        if(data != 403){
-            sessionStorage.setItem('keypy',data);
-        }else
-            getError();
+    .then((data)=>{
+        if (data != null){
+            // sessionStorage.setItem('key',data);
+            document.cookie = `key=${data}`;
+            window.location.href = `${window.location.href}?key=${data}`;
+        }
     });
 }
 

@@ -1,5 +1,5 @@
 function cd(element){
-    fetch(`${API}drive/list?key=${KEY}&path=${element.dataset.loc}`)
+    fetch(`${APY}/drive/list?key=${KEY}&path=${element.dataset.loc}`)
     .then(res => res.json())
     .then((data)=>{
         drive(data);
@@ -7,12 +7,13 @@ function cd(element){
 }
 
 function back(path){
+    // return path.location.replace(path.name, '')
     return path.substring(0,path.lastIndexOf(DIR_SEP))
 }
 
 
 function view(element){
-    window.open(`${API}drive/viewFile?key=${KEY}&path=${element.dataset.loc}`, '_blank')
+    window.open(`${APY}/drive/viewFile?key=${KEY}&path=${element.dataset.loc}`, '_blank')
 }
 
 function copy(){
@@ -35,7 +36,7 @@ function paste(){
     files = sessionStorage.getItem('files').split(',');
     src = files.shift();
     files.forEach(file=>{
-        fetch(`${API}drive/cp?opath=${src}${file}&dpath=${dst}${DIR_SEP}${file}`)
+        fetch(`${APY}/drive/cp?opath=${src}${file}&dpath=${dst}${DIR_SEP}${file}`)
     });
     document.getElementById('pasteTool').classList.add('disabled')
     sessionStorage.removeItem('files');
@@ -51,7 +52,7 @@ function newDir(){
     xButton = document.getElementById('multiButton');
     xButton.innerHTML="New Dir";
     xButton.addEventListener('click',()=>{
-        fetch(`${API}drive/mkdir?path=${cPath.value}&dir=${xText.value}`);
+        fetch(`${API}/drive/mkdir?path=${cPath.value}&dir=${xText.value}`);
         xButton.innerHTML= '';
         xText.value= '';
         xTool.classList.add('disabled');
@@ -68,7 +69,7 @@ function rename(element){
     xButton.innerHTML="Rename";
     xText.value = element.nextElementSibling.innerHTML;
     xButton.addEventListener('click',()=>{
-        fetch(`${API}drive/mv?opath=${element.nextElementSibling.dataset.loc}&dpath=${cPath.value+DIR_SEP+xText.value}`);
+        fetch(`${APY}/drive/mv?opath=${element.nextElementSibling.dataset.loc}&dpath=${cPath.value+DIR_SEP+xText.value}`);
         xButton.innerHTML= '';76
         xText.value= '';
         xTool.classList.add('disabled');
@@ -104,7 +105,7 @@ function drop(event){
             //console.log(transfers.files[i]);
         }
     }
-    fetch(`${API}drive/upload?key=${KEY}`, { 
+    fetch(`${API}/drive/upload?key=${KEY}`, { 
         method: "POST",
         body: frmData
     });
@@ -117,7 +118,7 @@ function add2Fav(el){
     form.append('type', 'Favoritos');
     form.append('name', el.dataset.name);
     form.append('value', el .dataset.loc);
-    fetch(`${APY}listman/add?key=${KEYPY}`, { 
+    fetch(`${APY}/listman/add?key=${KEYPY}`, { 
         method: "POST",
         body: form
     });

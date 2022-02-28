@@ -1,56 +1,48 @@
 const config = require('./libs/utils.js')
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const drive = require('./apps/Drive/index.js');
+const cookieParser = require('cookie-parser');
 const fs = require('fs')
-// const { reset } = require('nodemon');
-// const pepa = require('./apps/Pepapig/index.js');
+// const drive = require('./apps/Drive/index.js');
 
 const port = config.params.PORT || 3000;
 const app = express();
 
 app.use(fileUpload());
+app.use(cookieParser());
 
 app.use(express.static(__dirname+'/public'));
 app.use(express.urlencoded({ extended: true}));
 
-// app.use('/pepapig', pepa);
-app.use('/drive', drive);
-
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('/', (req, res)=>{
-    fs.writeFile('public/js/config.js', writeConfig() ,(err) => {
+app.get('/', (req,res)=>{
+    fs.writeFile('public/js/config.js', writeConfig(req.cookies.key) ,(err) => {
         if (err) throw err;
     });
-    if (req.query.key == config.pass){
+    if ('key' in req.query && req.query.key == req.cookies.key){
         res.render('template', {
-            title: '{(Serebro.v2)}',
+            title: '{<(Serebro.v2)>}',
             scripts: ''
         });
     }else
         res.render('login', {title: '{(Serebro.v2)}'});
 });
- 
-app.post('/login', (req, res)=>{
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Credentials', '*');
-    res.set('Access-Control-Allow-Methods', '*');
+
+app.get('/:app', (req, res)=>{
+    if (req.query.key != req.cookies.key) res.sendStatus(403);
+    res.render(req.params.app, {
+        title: '{<(Serebro.v2)>}',
+        scripts: ''
+    });
     
-    if(req.body.user == config.params.USER && req.body.pass == config.params.USERPASS){
-        res.send(config.pass);
-    }else{
-        res.sendStatus(403);
-    }
 });
 
-function writeConfig(){
-    content = "const KEY = sessionStorage.getItem('key');\n"
-    content += "const KEYPY = sessionStorage.getItem('keypy');\n"
-    content += `const DIR_SEP = '${config.params.DIR_SEP}';\n`
-    content += `const API = '${config.params.API}'\n`;
-    content += `const APY = '${config.params.APY}'\n`;
+function writeConfig(key){
+    content = `const APY = '${config.params.APY}'\n`;
+    content += `const KEY = '${key}'`
+    content += `const DIR_SEP = '${config.params.DIR_SEP}'\n`;
     return content
 }
 

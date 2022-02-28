@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/cssLib/opApp.css"/>
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
-    <script src="/js/config.js"></script>
+    <script src="apps/login.js" type="text/javascript"></script>
+    <script src="js/config.js"></script>
     <title><%=title%></title>
 </head>
 <body>
     <div id="loginContent">
         <div id="loginBox">
             <span class="whitesmoke">Username</span>
-            <input id="username" type="text">
+            <input id="username" name="user" type="text">
             <span class="whitesmoke mt1">Password</span>
-            <input id="password" type="password">
+            <input id="password" name="pass" type="password">
             <button class="mt10" type="button" onclick="login()">Login</button>
-            <div style="color: red;" id="error"></div>
+            <div id="error">Error de autenticacion</div>
         </div>
     </div>
-    <script src="/apps/login.js"></script>
+
 </body>
 </html>

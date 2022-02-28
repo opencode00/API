@@ -40,9 +40,9 @@ function buildRow(content, attrs = false, header = false){
 
 function buildLeftMenu(){
     let content = `
-    <div><a onclick="data('${API}drive/list?key=${KEY}', drive)">Mi Unidad</a></div>
-    <div><a onclick="data('${API}drive/list?key=${KEY}', shared)">Compartidos</a></div>
-    <div><a onclick="data('${API}drive/list?key=${KEY}', favs)">Destacados</a></div>
+    <div><a onclick="data('${APY}/drive/list?key=${KEY}', drive)">Mi Unidad</a></div>
+    <div><a onclick="data('${APY}/drive/list?key=${KEY}', shared)">Compartidos</a></div>
+    <div><a onclick="data('${APY}/drive/list?key=${KEY}', favs)">Destacados</a></div>
     `;
 
     document.getElementById('left').innerHTML = content

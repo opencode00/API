@@ -24,3 +24,7 @@ body{
 .whitesmoke{
     color: whitesmoke;
 }
+
+#error{
+    color: red;
+}
