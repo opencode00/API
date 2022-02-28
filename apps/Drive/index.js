@@ -34,7 +34,7 @@ drive.get('/list',(req, res) => {
 drive.get('/viewFile',(req, res) => {
     const file = req.query.path;
     const content = nDrive.viewFile(`${file}`);
-    console.log(content);
+    // console.log(content);
     res.setHeader('Content-type', nDrive.getMimeTypes(file));
     res.send(content);
 });
