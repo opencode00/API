@@ -1,11 +1,12 @@
-const config = require('./libs/utils.js')
+// const drive = require('./apps/Drive/index.js');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const fs = require('fs')
-// const drive = require('./apps/Drive/index.js');
+const dotenv = require('dotenv').config();
+const config  = dotenv.parsed
 
-const port = config.params.PORT || 3000;
+const port = config.PORT || 3000;
 const app = express();
 
 app.use(fileUpload());
@@ -40,9 +41,9 @@ app.get('/:app', (req, res)=>{
 });
 
 function writeConfig(key){
-    content = `const APY = '${config.params.APY}'\n`;
-    content += `const KEY = '${key}'`
-    content += `const DIR_SEP = '${config.params.DIR_SEP}'\n`;
+    content = `const APY = '${config.APY}';\n`;
+    content += `const KEY = '${key}';\n`
+    content += `const DIR_SEP = '${config.DIR_SEP}';\n`;
     return content
 }
 

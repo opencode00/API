@@ -118,7 +118,7 @@ function add2Fav(el){
     form.append('type', 'Favoritos');
     form.append('name', el.dataset.name);
     form.append('value', el .dataset.loc);
-    fetch(`${APY}/listman/add?key=${KEYPY}`, { 
+    fetch(`${APY}/listman/add?key=${KEY}`, { 
         method: "POST",
         body: form
     });

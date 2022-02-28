@@ -51,7 +51,7 @@ function buildLeftMenu(){
 function giveFavs(el){
     ul = document.createElement('ul')
     content = ''
-    fetch(`${APY}listman/get/Favoritos?key=${KEYPY}`)
+    fetch(`${APY}/listman/get/Favoritos?key=${KEY}`)
     .then(res => res.json())
     .then(data => {
         data.forEach((ref => {
@@ -71,5 +71,5 @@ function remove(el){
     ul = li.parentNode
     ul.removeChild(li)
 
-    fetch(`${APY}listman/remove/${id}?key=${KEYPY}`)
+    fetch(`${APY}/listman/remove/${id}?key=${KEY}`)
 }
