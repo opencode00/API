@@ -48,6 +48,15 @@ function buildLeftMenu(){
     document.getElementById('izquierda').innerHTML = content
 }
 
+function buildRightMenu(){
+    const content = `
+    <div class="vmenu_item icon"><a class="icon tools" onclick="copy()"> Copiar</a></div>
+    <div class="vmenu_item icon"><a class="icon tools" id="pasteTool" onclick="paste()"> Pegar </a> </div>
+    <div class="vmenu_item icon"><a class="icon tools" onclick="newDir()"> +Carpeta </a></div>
+    `;
+    document.getElementById('derecha').innerHTML += content
+}
+
 function giveFavs(el){
     ul = document.createElement('ul')
     content = ''

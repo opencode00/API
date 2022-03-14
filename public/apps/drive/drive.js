@@ -5,6 +5,7 @@ const dropzone = document.querySelector('body');
 
 function init(){
     buildLeftMenu();
+    buildRightMenu();
     data(`${APY}/drive/list?key=${KEY}`, drive);
 }
 
@@ -31,10 +32,7 @@ function drive(data){
     //Header
     let content = `
         <a onclick="cd(this)" data-loc="${back(data[0])}" style="cursor: pointer"> ^ UP </a> - ${data[0]}
-        <input type="hidden" value="${data[0]}" id="currentPath" data-loc="${data[0]}"/> | 
-        <a class="icon tools" onclick="copy()"> &#xa9; </a>
-        <a class="icon tools" id="pasteTool" onclick="paste()"> &#x2117; </a> 
-        <a class="icon tools" onclick="newDir()">&#10010; </a> 
+        <input type="hidden" value="${data[0]}" id="currentPath" data-loc="${data[0]}"/>
         `;
         
     table.appendChild(buildRow(content, {colspan: 1}, true))
