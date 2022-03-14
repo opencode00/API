@@ -5,24 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/cssLib/opApp.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/telegram.css"/>
     <link rel="stylesheet" type="text/css" href="/css/serebro.css"/>
     <script src="/js/config.js"></script>
     <title><%=title%></title>
 </head>
 <body>
-    <header>
-        <%- include('topbar') %> 
-    </header>
-    <div id="container">
-        <section id="left">
-          </section>
-        <section id="content">
+    <div id="main">
+        <header>
+            <%- include('topbar') %> 
+        </header>
+        <div id="container">
+            <section id="izquierda" style="display: block">
+            </section>
+            <div id="content">
+            </div>
+            <aside id="derecha" class="derecha_out">
+                <button onclick="dHide()">X</button>
+            </aside>
 
-        </section>
-        <section id="right">
-        </section>
+        </div>
+        <!-- <footer>
+            footer
+        </footer> -->
     </div>
-</div>
+    <script>
+        function dReveal(){
+            document.getElementById('derecha').classList.add('derecha_in');
+            document.getElementById('derecha').classList.remove('derecha_out');
+            
+        }
+        
+        function dHide(){
+            document.getElementById('derecha').classList.remove('derecha_in');
+            document.getElementById('derecha').classList.add('derecha_out');
+        }
+        
+        function iToggle(){
+            izq = document.getElementById('izquierda');
+            if (izq.style.display == 'block') izq.style.display = 'none';
+            else izq.style.display = 'block';
+        }
+    </script>
     <%- scripts%>
 </body>
 </html>

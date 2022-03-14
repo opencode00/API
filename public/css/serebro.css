@@ -1,3 +1,4 @@
+
 body{
     /* background-image: linear-gradient(#AAA 1%, #222 99%);
     background-repeat: repeat-y; */
@@ -7,47 +8,31 @@ body{
     font-size: 18px;
 }
 
-
-header{
-    height: 5em;
-    margin-bottom: 4px;
-}
-
 nav {
     display: flex; 
     align-items: center;
     justify-content: space-between;
-    height: 5em;
 }
 
-#container{
-    display: flex;
-}  
-
-#left{
-    max-width: 200px;
-    min-width: 200px;
-    /* flex-grow: 1;
-    flex-basis: 1em; */
+ui-celement{
+    font-size: 1rem;
 }
-
-#content{
-    flex-grow: 2;
-    flex-basis:70em;
-}
-
 
 #app_icon{
-    width: 5em;
-    margin-left: 1em;
-    
+    width: 6rem;
 }
 
 .icon{
     cursor: pointer;
 }
+
 .tools{
     font-size: 1.1em;
+}
+
+.vmenu_item{
+    padding: 4px;
+    color: whitesmoke;
 }
 
 #overlay{
@@ -71,24 +56,19 @@ nav {
     padding: 6px;
     text-align: center;
 }
-@media screen and (max-width: 576px) {
-	body{
-		font-size: 11px;
-	}
 
-    #content{
-        display: block;
-    }  
-    
-    #left{
-        display: none;
+@media screen and (max-width: 1090px){
+    body{
+        font-size: 14px;
     }
-    
-    #center{
-        display: block;
+}
+
+@media screen and (max-width: 700px){
+    body{
+        font-size: 14px;
     }
-    
-    #right{
-        display: none;
+
+    ui-celement{
+        font-size: 0.7rem;
     }
 }

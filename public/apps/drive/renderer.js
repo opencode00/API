@@ -6,7 +6,7 @@ function chassis(){
     table.classList.add('dark');
     table.setAttribute('id', 'fileExplorerElement')
     table.style.color = '#CDD';
-    table.style.width = '90%';
+    table.style.width = '100%';
     table.innerHTML = '';
 
     return table;
@@ -40,12 +40,12 @@ function buildRow(content, attrs = false, header = false){
 
 function buildLeftMenu(){
     let content = `
-    <div><a onclick="data('${APY}/drive/list?key=${KEY}', drive)">Mi Unidad</a></div>
-    <div><a onclick="data('${APY}/drive/list?key=${KEY}', shared)">Compartidos</a></div>
-    <div><a onclick="data('${APY}/drive/list?key=${KEY}', favs)">Destacados</a></div>
+    <div class="vmenu_item icon"><a onclick="data('${APY}/drive/list?key=${KEY}', drive)">Mi Unidad</a></div>
+    <div class="vmenu_item icon"><a onclick="data('${APY}/drive/list?key=${KEY}', shared)">Compartidos</a></div>
+    <div class="vmenu_item icon"><a onclick="data('${APY}/drive/list?key=${KEY}', favs)">Favoritos</a></div>
     `;
 
-    document.getElementById('left').innerHTML = content
+    document.getElementById('izquierda').innerHTML = content
 }
 
 function giveFavs(el){

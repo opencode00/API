@@ -50,12 +50,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 /* ====================
 * ESTILOS GENERALES *
 ==================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 body {
 	font-family: var(--fuente);
 	font-size: 15px;
